@@ -70,18 +70,18 @@ npm run start:dev
 
 ## Environment Variables
 
-### Auth Service (.env)
+### API Gateway (.env)
 ```env
 PORT=3000
-MONGO_URI=mongodb://localhost:27017/auth
-JWT_SECRET=supersecret
-JWT_EXPIRATION_TIME=3600
 RABBITMQ_URL=amqp://localhost:5672
 ```
 
-### API Gateway (.env)
+### Auth Service (.env)
 ```env
 PORT=3001
+MONGO_URI=mongodb://localhost:27017/auth
+JWT_SECRET=supersecret
+JWT_EXPIRATION_TIME=3600
 RABBITMQ_URL=amqp://localhost:5672
 ```
 
@@ -96,7 +96,7 @@ JWT_SECRET=supersecret
 
 ### Register a new user (via API Gateway)
 ```bash
-curl -X POST http://localhost:3001/auth/register \
+curl -X POST http://localhost:3000/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "email": "user@example.com",
@@ -107,7 +107,7 @@ curl -X POST http://localhost:3001/auth/register \
 
 ### Login (via API Gateway)
 ```bash
-curl -X POST http://localhost:3001/auth/login \
+curl -X POST http://localhost:3000/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "user@example.com",
