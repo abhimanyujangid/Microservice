@@ -2,7 +2,7 @@
 
 ## Services
 
-### 1. Auth Microservice (port 3000)
+### 1. Auth Microservice (port 3001)
 - HTTP + RabbitMQ microservice
 - Handles user registration, login, JWT issuance
 - Strategies: Local (email/password), JWT
@@ -39,8 +39,8 @@ docker-compose up --build
 ```
 
 Access:
-- API Gateway: http://localhost:3001
-- Auth Service: http://localhost:3000
+- API Gateway: http://localhost:3000
+- Auth Service: http://localhost:3001
 - RabbitMQ Management: http://localhost:15672 (guest/guest)
 
 ### Option 2: Local Development
@@ -96,7 +96,7 @@ JWT_SECRET=supersecret
 
 ### Register a new user (via API Gateway)
 ```bash
-curl -X POST http://localhost:3000/auth/register \
+curl -X POST http://localhost:3001/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "email": "user@example.com",
@@ -107,7 +107,7 @@ curl -X POST http://localhost:3000/auth/register \
 
 ### Login (via API Gateway)
 ```bash
-curl -X POST http://localhost:3000/auth/login \
+curl -X POST http://localhost:3001/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "user@example.com",
@@ -118,7 +118,7 @@ curl -X POST http://localhost:3000/auth/login \
 ### Get profile (direct to Auth Service with JWT)
 ```bash
 curl -H "Authorization: Bearer YOUR_TOKEN_HERE" \
-  http://localhost:3000/auth/profile
+  http://localhost:3001/auth/profile
 ```
 
 ### Verify token (internal RPC - example from Node.js)
