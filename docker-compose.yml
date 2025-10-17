@@ -21,14 +21,12 @@ services:
       - rabbitmq
     ports:
       - "3000:3000"
-      
+
   auth:
     build: ./auth-microservice
     environment:
       - PORT=3001
       - MONGO_URI=mongodb://mongo:27017/auth
-      - JWT_SECRET=supersecret
-      - JWT_EXPIRATION_TIME=3600
       - RABBITMQ_URL=amqp://rabbitmq:5672
     depends_on:
       - mongo
