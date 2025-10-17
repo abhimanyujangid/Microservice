@@ -134,9 +134,9 @@ const result = await client.send(
 ## Architecture
 
 ```
-┌─────────────┐     HTTP      ┌──────────────┐
-│   Client    │───────────────▶│ API Gateway  │
-└─────────────┘                │  (port 3001) │
+┌─────────────┐     HTTP       ┌──────────────┐
+|   Client    │───────────────▶│ API Gateway  │
+└─────────────┘                │  (port 3000) │
                                └───────┬──────┘
                                        │ RabbitMQ
                      ┌─────────────────┼─────────────────┐
@@ -144,7 +144,7 @@ const result = await client.send(
                      ▼                 ▼                 ▼
              ┌───────────────┐ ┌──────────────┐ ┌──────────────┐
              │ Auth Service  │ │Token Service │ │ More Services│
-             │  (port 3000)  │ │ (port 3002)  │ │   (future)   │
+             │ (port 3001)   │ │ (port 3002)  │ │   (future)   │
              └───────┬───────┘ └──────────────┘ └──────────────┘
                      │
                      ▼
